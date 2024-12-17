@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% block title %}
+{{course.title}}
+{% endblock title %}
+{% block body %}
+
+
+<!-- Navbar (same as other pages) -->
+
+<div class="view-detail-page mt-5">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="content-wrapper p-4">
+                    <!-- Video Section -->
+                    <div class="video-container mb-4">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/your-video-id" 
+                                    title="Project Demo" 
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Project Header -->
+                    <div class="project-header mb-4">
+                        <h1 class="project-title mb-3">AI Chat Application</h1>
+                        <div class="project-meta d-flex flex-wrap align-items-center gap-3">
+                            <span class="badge bg-primary">Python</span>
+                            <span><i class="far fa-calendar"></i> Updated Jan 2024</span>
+                            <span><i class="far fa-eye"></i> 1.2k Views</span>
+                            <span><i class="far fa-star"></i> 4.8 (156 reviews)</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons mb-4">
+                        <div class="row g-2">
+                            <div class="col-sm-6">
+                                <button class="btn btn-primary btn-lg w-100">
+                                    <i class="fas fa-download me-2"></i> Download Project ($49.99)
+                                </button>
+                            </div>
+                            <div class="col-sm-3">
+                                <button class="btn btn-outline-primary btn-lg w-100">
+                                    <i class="far fa-heart me-2"></i> Save
+                                </button>
+                            </div>
+                            <div class="col-sm-3">
+                                <button class="btn btn-outline-primary btn-lg w-100">
+                                    <i class="fas fa-share-alt me-2"></i> Share
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Details Tabs -->
+                    <ul class="nav nav-tabs" id="projectTabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#description">Description</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#features">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#requirements">Requirements</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#reviews">Reviews</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content p-4 bg-white">
+                        <div class="tab-pane fade show active" id="description">
+                            <h3>Project Description</h3>
+                            <p>Detailed project description goes here...</p>
+                            
+                            <h4 class="mt-4">Technology Stack</h4>
+                            <div class="tech-stack-grid">
+                                <div class="tech-item">
+                                    <i class="fab fa-python"></i>
+                                    <span>Python 3.9</span>
+                                </div>
+                                <!-- Add more tech items -->
+                            </div>
+                        </div>
+                        <!-- Add other tab contents -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="sidebar-wrapper p-4">
+                    <!-- Author Info -->
+                    <div class="author-card mb-4">
+                        <div class="author-header d-flex align-items-center">
+                            <img src="https://placehold.co/100x100" alt="Author" class="author-avatar">
+                            <div class="author-info ms-3">
+                                <h5 class="mb-1">John Doe</h5>
+                                <p class="text-muted mb-0">Senior Developer</p>
+                            </div>
+                        </div>
+                        <div class="author-stats mt-3">
+                            <div class="row text-center">
+                                <div class="col">
+                                    <h6>52</h6>
+                                    <small>Projects</small>
+                                </div>
+                                <div class="col">
+                                    <h6>4.9</h6>
+                                    <small>Rating</small>
+                                </div>
+                                <div class="col">
+                                    <h6>10k</h6>
+                                    <small>Sales</small>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-primary w-100 mt-3">
+                            <i class="far fa-envelope me-2"></i> Contact Author
+                        </button>
+                    </div>
+
+                    <!-- Project Details -->
+                    <div class="project-details-card mb-4">
+                        <h5 class="mb-3">Project Details</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-code me-2"></i> Version: 2.0.1
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-file me-2"></i> Size: 24.5 MB
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-download me-2"></i> Downloads: 1,234
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-clock me-2"></i> Last Updated: 2 days ago
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Similar Projects -->
+                    <div class="similar-projects">
+                        <h5 class="mb-3">Similar Projects</h5>
+                        <div class="similar-project-card mb-3">
+                            <img src="https://placehold.co/300x200" alt="Similar Project" class="img-fluid rounded">
+                            <div class="project-info mt-2">
+                                <h6 class="mb-1">Machine Learning Dashboard</h6>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-primary">$39.99</span>
+                                    <span class="text-muted"><i class="far fa-star"></i> 4.7</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add more similar projects -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

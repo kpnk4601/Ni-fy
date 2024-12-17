@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}
+Project
+{% endblock title %}
+
+{% block body %}
+
+
+
+<!-- Navbar (same as other pages) -->
+
+<div class="project-page mt-5">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3 sidebar">
+                <div class="sidebar-content p-4">
+                    <h4 class="mb-4">Categories</h4>
+                    
+                    <!-- Category List -->
+                    
+                    <ul class="category-list">
+                        {% for i in category  %}
+                        <li class="category-item">
+                            <a href="#" class="d-flex align-items-center">
+                                <i class="bx {{i.icon}}"></i>
+                            {{i.name}}
+                                <span class="badge bg-light text-dark ms-auto">2</span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <!-- Popular Tags -->
+                    <h4 class="mb-3 mt-5">Popular Tags</h4>
+                    <div class="tags-container">
+                        <a href="#" class="tag">Web Development</a>
+                        <a href="#" class="tag">Machine Learning</a>
+                        <a href="#" class="tag">Mobile Apps</a>
+                        <a href="#" class="tag">Data Science</a>
+                        <a href="#" class="tag">UI/UX</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="project-grid p-4">
+                    <div class="row g-4">
+                        <!-- Project Card -->
+                        {% for i in course  %}
+                        <div class="col-md-6 col-lg-4">
+                            <div class="project-hover-card">
+                                <div class="project-image">
+                                    <img src="{{i.feature_image}}" alt="Project">
+                                    <div class="hover-overlay">
+                                        <div class="hover-content">
+                                            <h5>{{i.title}}</h5>
+                                            <p>A smart chatbot powered by machine learning</p>
+                                            <a href="{{i.get_absolute_url}}" class="btn btn-light">View Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-info">
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">{{i.description}}</span>
+                                        <span class="tech-tag">tensorflow</span>
+                                    </div>
+                                    <div class="project-meta">
+                                        <span><i class="far fa-user"></i>{{i.author}}</span>
+                                        <span><i class="far fa-star"></i> 4.8</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        <!-- Repeat similar cards with different content -->
+                        <!-- Add more project cards here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}
