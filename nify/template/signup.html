@@ -1,95 +1,102 @@
 {% extends "base.html" %}
-{% load socialaccount %}
-{% load static %}
 {% block body %}
 
-<section class="signup-section">
-    <div class="container">
-        <div class="row align-items-stretch g-0">
-            <!-- Left Side - Form -->
-            <div class="col-lg-6">
-                <div class="signup-form-container p-5">
-                    <h1 class="display-6 fw-bold mb-4">Create Your Account</h1>
-                    <p class="text-muted mb-4">Join our community of innovative students and showcase your projects</p>
-                    
-                    <form class="signup-form" method = 'POST' >
-                        {% csrf_token %}
-                        <div class="social-signup mb-4">
-                            <a href="{% provider_login_url 'google' %}" class="btn btn-outline-dark w-100 btn-sm">
-                                <i class="fab fa-google me-2"></i> Continue with Google
-                            </a>
-                            <a href="{% provider_login_url 'github' %}" class="btn btn-outline-dark w-100 btn-sm">
-                                <i class="fab fa-github me-2"></i> Continue with GitHub
-                            </a>
-                        </div>
-                        
-                        
-                        <div class="divider mb-4">
-                            <span class="divider-text">or sign up with email</span>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="username" name= 'username' placeholder="First Name">
-                                    <label for="username">Username</label>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="email" name = 'email' placeholder="name@example.com">
-                            <label for="email">Email address</label>
-                        </div>
-                        
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="password" name = 'password'placeholder="Password">
-                            <label for="password">Password</label>
-                            <div class="password-strength mt-2">
-                                <div class="progress" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 0%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="terms">
-                                <label class="form-check-label" for="terms">
-                                    I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary w-100 btn-lg mb-3">Create Account</button>
-                        
-                        <p class="text-center mb-0">
-                            Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Log in</a>
-                        </p>
-                    </form>
+    <div class="auth-container">
+        <div class="auth-wrapper">
+            <!-- Left Side - Sign Up Form -->
+            <div class="auth-card signup-card">
+                <div class="auth-header">
+                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/sign-up-4922762-4097209.png" alt="Sign Up" class="auth-image">
+                    <h2>Create Account</h2>
+                    <p>Join our community today</p>
                 </div>
-            </div>
-            
-            <!-- Right Side - Image -->
-            <div class="col-lg-6 d-none d-lg-block">
-                <div class="signup-image-container">
-                    <div class="signup-image"></div>
-                    <div class="feature-cards">
-                        <div class="feature-card">
-                            <i class="fas fa-project-diagram"></i>
-                            <h5>Showcase Projects</h5>
-                            <p>Share your best work with the world</p>
+                <form id="signupForm" class="auth-form" method = 'POST'>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username">
+                            <i class="fas fa-user"></i> Username
+                        </label>
+                        <input type="text" class="form-control" id="username" name = 'username' required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i> Email
+                        </label>
+                        <input type="email" class="form-control" id="email" name = 'email' required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <div class="password-input">
+                            <input type="password" class="form-control" id="password" name = 'password' required>
+                            <i class="fas fa-eye toggle-password"></i>
                         </div>
-                        <div class="feature-card">
+                    </div>
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" id="terms" required>
+                        <label class="form-check-label" for="terms">
+                            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Create Account</button>
+
+                    <div class="divider">
+                        <span>or sign up with</span>
+                    </div>
+
+                    <div class="social-login">
+                        <button type="button" class="social-btn github-btn">
+                            <i class="fab fa-github"></i>
+                            Sign up with GitHub
+                        </button>
+                        <button type="button" class="social-btn google-btn">
+                            <img src="assets/google-icon.svg" alt="Google">
+                            Sign up with Google
+                        </button>
+                    </div>
+
+                    <div class="auth-links">
+                        <span>Already have an account? <a href="login.html">Login</a></span>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Side - Community Card -->
+            <div class="community-card" data-aos="fade-left">
+                <div class="community-content">
+                    <h2>Join Our Community</h2>
+                    <div class="community-features">
+                        <div class="feature-item">
+                            <i class="fas fa-code"></i>
+                            <h4>Share Your Projects</h4>
+                            <p>Showcase your best work to the world</p>
+                        </div>
+                        <div class="feature-item">
                             <i class="fas fa-users"></i>
-                            <h5>Join Community</h5>
-                            <p>Connect with other student developers</p>
+                            <h4>Connect with Developers</h4>
+                            <p>Network with like-minded professionals</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <h4>Learn & Grow</h4>
+                            <p>Access resources and learn from others</p>
+                        </div>
+                    </div>
+                    <div class="community-stats">
+                        <div class="stat">
+                            <span class="stat-number">5000+</span>
+                            <span class="stat-label">Active Members</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">1000+</span>
+                            <span class="stat-label">Projects Shared</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
-{% endblock body %}
+    {% endblock %}

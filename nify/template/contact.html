@@ -1,116 +1,85 @@
 {% extends "base.html" %}
 {% block body %}
 
-<div class="contact-3d-page">
-    <div class="contact-background"></div>
-    <div class="container">
-        
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="contact-wrapper">
-                    <!-- 3D Contact Card -->
-                    <div class="contact-card">
-                        <div class="card-inner">
-                            <div class="row g-0">
-                                <!-- Left Side - Contact Info -->
-                                <div class="col-md-5">
-                                    <div class="contact-info-3d">
-                                        <div class="info-content">
-                                            <h2 class="mb-4">Get in Touch</h2>
-                                            <div class="contact-items">
-                                                <div class="contact-item">
-                                                    <div class="icon-box">
-                                                        <i class="fas fa-map-marker-alt"></i>
-                                                    </div>
-                                                    <div class="info-text">
-                                                        <h5>Location</h5>
-                                                        <p>123 Innovation Street, Tech Valley, CA 94043</p>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="contact-item">
-                                                    <div class="icon-box">
-                                                        <i class="fas fa-envelope"></i>
-                                                    </div>
-                                                    <div class="info-text">
-                                                        <h5>Email</h5>
-                                                        <p>contact@projectmarket.com</p>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="contact-item">
-                                                    <div class="icon-box">
-                                                        <i class="fas fa-phone"></i>
-                                                    </div>
-                                                    <div class="info-text">
-                                                        <h5>Phone</h5>
-                                                        <p>+1 (555) 123-4567</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="social-links mt-4">
-                                                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                                                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                                            </div>
-                                        </div>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-4 fw-bold">Get in Touch</h1>
+                    <p class="lead">Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/contact-us-4550329-3779137.png" alt="Contact Hero" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row">
+                <!-- Contact Information -->
+                <div class="col-lg-4" data-aos="fade-up">
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <div class="icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>Address</h3>
+                            <p>123 Tech Street, Silicon Valley<br>California, USA</p>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email</h3>
+                            <p>support@codesharehub.com<br>info@codesharehub.com</p>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567<br>+1 (555) 987-6543</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Your Name</label>
+                                        <input type="text" class="form-control" id="name" required>
                                     </div>
                                 </div>
-                                
-                                <!-- Right Side - Contact Form -->
-                                <div class="col-md-7">
-                                    <div class="contact-form-3d">
-                                        {% if messages %}
-                                        <ul>
-                                            {% for message in messages %}
-                                                <li class="{{ message.tags }}">{{ message }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    {% endif %}
-                                        <h3 class="mb-4">Send us a Message</h3>
-                                        <form method = 'POST' action="{% url 'contact' %}">
-                                            {% csrf_token %}
-                                            <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" id="name" name = 'name' placeholder="Your Name">
-                                                <label for="name">Your Name</label>
-                                            </div>
-                                            
-                                            <div class="form-floating mb-3">
-                                                <input type="email" class="form-control" id="email" name = 'email' placeholder="Email">
-                                                <label for="email">Email Address</label>
-                                            </div>
-                                            
-                                            <div class="form-floating mb-3">
-                                                <select class="form-select" id="subject" name = 'subject'>
-                                                    <option selected>Select Subject</option>
-                                                    <option value="1">General Inquiry</option>
-                                                    <option value="2">Technical Support</option>
-                                                    <option value="3">Business Proposal</option>
-                                                </select>
-                                                <label for="subject">Subject</label>
-                                            </div>
-                                            
-                                            <div class="form-floating mb-3">
-                                                <textarea class="form-control" id="message" name = 'message' style="height: 150px" placeholder="Message"></textarea>
-                                                <label for="message">Your Message</label>
-                                            </div>
-                                            
-                                            <button type="submit" class="btn btn-primary btn-lg w-100">
-                                                Send Message
-                                                <i class="fas fa-paper-plane ms-2"></i>
-                                            </button>
-                                        </form>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Your Email</label>
+                                        <input type="email" class="form-control" id="email" required>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" class="form-control" id="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
-{% endblock body %}
+    {% endblock  %}

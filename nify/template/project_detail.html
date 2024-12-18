@@ -1,88 +1,86 @@
 {% extends "base.html" %}
-{% block title %}
-Project
-{% endblock title %}
 
 {% block body %}
+<!-- Main Content -->
+<div class="browse-wrapper">
+    <!-- Left Sidebar -->
+    <div class="browse-sidebar">
+        <div class="search-section">
+            <div class="search-box">
+                <form method="get" action="{% url 'project_detail' %}">
+                    <input type="text" name="search_query" placeholder="Search projects..." value="{{ request.GET.search_query }}">
+                    <i class="fas fa-search"></i>
+                </form>
+            </div>
+            <div class="filter-tags">
+                <span class="filter-tag active">All<i class="fas fa-times"></i></span>
+                {% for category in categories %}
+                <span class="filter-tag" data-category="{{ category.id }}">{{ category.name }}<i class="fas fa-times"></i></span>
+                {% endfor %}
+            </div>
+        </div>
 
+  
+        <!-- Technologies Filter (Checkboxes) -->
+        <div class="filter-section tech-filters">
+            <h4>Technologies</h4>
+            <div class="tech-filters">
+                <label class="tech-checkbox">
+                    <input type="checkbox" data-filter="technology" value="React">
+                    <span>React</span>
+                </label>
+                <label class="tech-checkbox">
+                    <input type="checkbox" data-filter="technology" value="Python">
+                    <span>Python</span>
+                </label>
+                <label class="tech-checkbox">
+                    <input type="checkbox" data-filter="technology" value="Node.js">
+                    <span>Node.js</span>
+                </label>
+            </div>
+        </div>
+    </div>
 
+    <!-- Main Content Area -->
+    <div class="browse-content">
+        <div class="browse-header">
+            <div class="title-section">
+                <h2>Browse Projects</h2>
+                <p>Discover amazing projects from our community</p>
+            </div>
+        </div>
 
-<!-- Navbar (same as other pages) -->
+        <!-- Featured Projects -->
+        <div class="section-title">
+            <h3>Featured Projects</h3>
+            <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
 
-<div class="project-page mt-5">
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <div class="col-lg-3 sidebar">
-                <div class="sidebar-content p-4">
-                    <h4 class="mb-4">Categories</h4>
-                    
-                    <!-- Category List -->
-                    
-                    <ul class="category-list">
-                        {% for i in category  %}
-                        <li class="category-item">
-                            <a href="#" class="d-flex align-items-center">
-                                <i class="bx {{i.icon}}"></i>
-                            {{i.name}}
-                                <span class="badge bg-light text-dark ms-auto">2</span>
-                            </a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-
-                    <!-- Popular Tags -->
-                    <h4 class="mb-3 mt-5">Popular Tags</h4>
-                    <div class="tags-container">
-                        <a href="#" class="tag">Web Development</a>
-                        <a href="#" class="tag">Machine Learning</a>
-                        <a href="#" class="tag">Mobile Apps</a>
-                        <a href="#" class="tag">Data Science</a>
-                        <a href="#" class="tag">UI/UX</a>
+        <div class="projects-grid" id="filteredProject">
+            {% for project in projects %}
+            <div class="compact-card">
+                <div class="card-image">
+                    <img src="{{ project.feature_image.url }}" alt="Project">
+                    <div class="overlay">
+                        <a href="{{ project.get_absolute_url }}" class="detail-btn">View Details</a>
+                    </div>
+                    <div class="card-category">
+                        <i class="fas fa-mobile-alt"></i>
+                        {{ project.category.name }}
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>{{ project.title }}</h3>
+                    <div class="mini-tags">
+                        <span>Flutter</span>
+                        <span>Firebase</span>
                     </div>
                 </div>
             </div>
-
-            <!-- Main Content -->
-            <div class="col-lg-9">
-                <div class="project-grid p-4">
-                    <div class="row g-4">
-                        <!-- Project Card -->
-                        {% for i in course  %}
-                        <div class="col-md-6 col-lg-4">
-                            <div class="project-hover-card">
-                                <div class="project-image">
-                                    <img src="{{i.feature_image}}" alt="Project">
-                                    <div class="hover-overlay">
-                                        <div class="hover-content">
-                                            <h5>{{i.title}}</h5>
-                                            <p>A smart chatbot powered by machine learning</p>
-                                            <a href="{{i.get_absolute_url}}" class="btn btn-light">View Details</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="project-info">
-                                    <div class="tech-stack">
-                                        <span class="tech-tag">{{i.description}}</span>
-                                        <span class="tech-tag">tensorflow</span>
-                                    </div>
-                                    <div class="project-meta">
-                                        <span><i class="far fa-user"></i>{{i.author}}</span>
-                                        <span><i class="far fa-star"></i> 4.8</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-
-                        <!-- Repeat similar cards with different content -->
-                        <!-- Add more project cards here -->
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
 
 
-{% endblock body %}
+{% endblock %}

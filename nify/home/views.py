@@ -1,17 +1,16 @@
 from django.shortcuts import render, redirect
 from .models import ContactForm
 from django.contrib import messages
-from home.models import Categories, Courses
-from django.http import JsonResponse
+from home.models import Categories, Project
 
 # Create your views here.
 def index(request):
     category = Categories.objects.all().order_by('id')[0:3]
-    course = Courses.objects.filter(status = 'PUBLISH').order_by('-id')
+    projects = Project.objects.filter(status = 'PUBLISH').order_by('-id')
 
     context = {
         'category': category,
-        'course': course,
+        'projects': projects,
     }
 
     return render(request, 'index.html', context)
@@ -45,25 +44,36 @@ def view_detail(request):
 
 
 def project_detail(request):
-    category = Categories.get_all()
-    course = Courses.get_all_course()
+    categories = Categories.objects.all()
+    projects = Project.objects.all()
+
+    # Get the search query from the GET parameters
+    search_query = request.GET.get('search_query', '')
+
+    # If there's a search query, filter the projects
+    if search_query:
+        projects = projects.filter(title__icontains=search_query)
 
     context = {
-        'course': course,
-        'category': category,
+        'projects': projects,
+        'categories': categories,
     }
     return render(request, 'project_detail.html', context)
 
 
+
+
+
+
 def view_detail(request, slug):
-    course = Courses.objects.filter(slug = slug)
-    if course.exists():
-        course = course.first()
+    projects = Project.objects.filter(slug = slug)
+    if projects.exists():
+        projects = projects.first()
     else:
         return redirect('404')
     
     context = {
-        'course': course,
+        'project': projects,
     }
 
     

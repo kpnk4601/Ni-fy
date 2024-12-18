@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block body %}
+<body>
+    <div class="modern-upload-wrapper">
+        <!-- Left Sidebar -->
+        <div class="upload-sidebar">
+            <div class="user-profile">
+                <img src="https://picsum.photos/100/100" alt="User" class="user-avatar">
+                <h3>John Doe</h3>
+                <p>@johndoe</p>
+            </div>
+
+            <div class="navigation-menu">
+                <a href="#" class="nav-item active">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    Upload Project
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-folder"></i>
+                    My Projects
+                </a>
+                <a href="#" class="nav-item text-danger">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="upload-main-content">
+            <div class="upload-header">
+                <h2>Upload Your Project</h2>
+            </div>
+
+            <form class="simple-upload-form">
+                <!-- Project Details -->
+                <div class="form-section">
+                    <div class="input-group-modern">
+                        <label>Project Title</label>
+                        <input type="text" placeholder="Enter project title" required>
+                    </div>
+
+                    <div class="input-group-modern">
+                        <label>Category</label>
+                        <input type="text" placeholder="e.g., Web Development, Mobile App, AI/ML">
+                    </div>
+
+                    <div class="input-group-modern">
+                        <label>Project Description</label>
+                        <textarea rows="4" placeholder="Describe your project..." required></textarea>
+                    </div>
+
+                    <div class="input-group-modern">
+                        <label>Requirements</label>
+                        <textarea rows="3" placeholder="List project requirements (e.g., Python 3.8+, Node.js)"></textarea>
+                    </div>
+                </div>
+
+                <!-- Media Upload -->
+                <div class="form-section">
+                    <div class="input-group-modern">
+                        <label>Project Images</label>
+                        <div class="simple-upload-box">
+                            <input type="file" multiple accept="image/*" required>
+                            <i class="fas fa-images"></i>
+                            <p>Choose images to upload (Max 5)</p>
+                        </div>
+                    </div>
+
+                    <div class="input-group-modern">
+                        <label>Project Files</label>
+                        <div class="simple-upload-box">
+                            <input type="file" required>
+                            <i class="fas fa-file-archive"></i>
+                            <p>Upload project files (ZIP)</p>
+                        </div>
+                    </div>
+
+                    <div class="input-group-modern">
+                        <label>Video Demo Link (Optional)</label>
+                        <input type="url" placeholder="YouTube or demo video URL">
+                    </div>
+                </div>
+
+                <!-- Author Info -->
+                <div class="form-section">
+                    <div class="input-group-modern">
+                        <label>Author Email</label>
+                        <input type="email" placeholder="Your email address" required>
+                    </div>
+
+                    <div class="input-group-modern">
+                        <label>WhatsApp Number (Optional)</label>
+                        <input type="tel" placeholder="e.g., +1234567890">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-upload"></i>
+                        Upload Project
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock body %}

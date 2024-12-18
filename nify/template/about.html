@@ -1,59 +1,54 @@
-
 {% extends "base.html" %}
-{% block title %}
-about
-
-{% endblock title %}
-
 {% block body %}
-<!-- Add some spacing after navbar -->
-<div style="margin-top: 80px;"></div>
 
-<!-- About Hero Section -->
-<section class="bg-light py-20 mt-16">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h1 class="display-4 fw-bold mb-4">About Us</h1>
-                <p class="lead mb-4">Welcome to ProjectMarket, a dynamic platform where students, developers, and tech enthusiasts come together to showcase, share, and collaborate on innovative projects. Our mission is to empower students and developers by providing a space to share their ideas, get feedback, and connect with a global community. Whether you are a beginner looking for inspiration or an experienced developer wanting to contribute your work, ProjectMarket offers a vibrant ecosystem for all.
-                    At ProjectMarket, we believe in the power of collaboration and learning. The platform is designed to support students in their academic journeys by enabling them to upload and showcase their projects, connect with peers, and gain recognition for their hard work. Our community-driven approach fosters a culture of sharing knowledge and promoting creativity.
-                    We are committed to providing a user-friendly and interactive experience for our members. With features like project browsing, easy upload options, and secure login systems, we ensure that everyone has access to the tools they need to succeed. Join us today and be a part of a growing community of innovators and creators. Together, we can shape the future of technology, one project at a time.</p>
-            </div>
-            <div class="col-lg-6">
-                <img src="static/assets/img/front1.jpg" alt="About Us" class="img-fluid rounded-lg shadow">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Mission Section -->
-<section class="py-16">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="text-center">
-                    <i class="fas fa-rocket text-primary fa-3x mb-4"></i>
-                    <h3 class="h4 mb-3">Our Mission</h3>
-                    <p>To provide a platform where students can showcase their talents and monetize their projects.</p>
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-4 fw-bold">About CodeShare Hub</h1>
+                    <p class="lead">Empowering developers to share, learn, and grow together through collaborative project sharing.</p>
                 </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="text-center">
-                    <i class="fas fa-eye text-primary fa-3x mb-4"></i>
-                    <h3 class="h4 mb-3">Our Vision</h3>
-                    <p>To become the leading marketplace for student projects globally.</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="text-center">
-                    <i class="fas fa-heart text-primary fa-3x mb-4"></i>
-                    <h3 class="h4 mb-3">Our Values</h3>
-                    <p>Innovation, integrity, and student success drive everything we do.</p>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/team-working-on-project-5517535-4610084.png" alt="About Hero" class="img-fluid">
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4" data-aos="fade-up">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <h3>Share Knowledge</h3>
+                        <p>Upload and share your programming projects with developers worldwide.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Build Community</h3>
+                        <p>Connect with like-minded developers and grow together.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mission-card">
+                        <div class="mission-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Inspire Innovation</h3>
+                        <p>Discover new ideas and inspire others with your creativity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-{% endblock body %}
+    {% endblock  %}

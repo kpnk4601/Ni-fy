@@ -44,7 +44,11 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
-class Courses(models.Model):
+    
+
+from django.urls import reverse
+
+class Project(models.Model):
     STATUS = (
         ('PUBLISH', 'PUBLISH'),
         ('DRAFT', 'DRAFT'),
@@ -55,25 +59,27 @@ class Courses(models.Model):
     title = models.CharField(max_length=500)
     created_at = models.DateField(auto_now_add=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
-    description = models.ForeignKey(Categories, on_delete=models.CASCADE)
-    price = models.IntegerField(null=True, default=0)
-    discount = models.IntegerField(null=True)
+    categorie = models.ForeignKey(Categories, on_delete=models.CASCADE, null=False, default=1)
+    description = models.TextField()
     slug = models.SlugField(default='', max_length=500, null=True, blank=True)
     status = models.CharField(choices=STATUS, max_length=100, null=True)
 
+    class Meta:
+        db_table = 'home_project'
 
     def __str__(self):
         return self.title
     
     def get_absolute_url(self):
-        from django.urls import reverse
-        return reverse('view_detail', kwargs={'slug':self.slug})
+        # Return the absolute URL for the project detail page
+        return reverse('view_detail', kwargs={'slug': self.slug})
+
 
 
     
     @classmethod
-    def get_all_course(self):
-        return Courses.objects.filter(status = 'PUBLISH').order_by('-id')
+    def get_all_project(self):
+        return Project.objects.filter(status = 'PUBLISH').order_by('-id')
     
 # for automatic slug creating
 
@@ -81,7 +87,7 @@ def create_slug(instance, new_slug=None):
     slug = slugify(instance.title)
     if new_slug is not None:
         slug = new_slug
-    qs = Courses.objects.filter(slug=slug). order_by('-id')
+    qs = Project.objects.filter(slug=slug). order_by('-id')
     exists = qs.exists()
     if exists:
         new_slug = '%s-%s' % (slug, qs.first().id)
@@ -93,7 +99,7 @@ def pre_save_post_receiver(sender, instance,  *args, **kwargs):
     if not instance.slug:
         instance.slug = create_slug(instance)
 
-pre_save.connect(pre_save_post_receiver, Courses)
+pre_save.connect(pre_save_post_receiver, Project)
 
 
     
