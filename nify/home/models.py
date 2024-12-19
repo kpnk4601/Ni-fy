@@ -2,6 +2,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
+from django.urls import reverse
 
 class ContactForm(models.Model):
     name = models.CharField(max_length=100)
@@ -46,7 +47,7 @@ class Author(models.Model):
         return self.name
     
 
-from django.urls import reverse
+
 
 class Project(models.Model):
     STATUS = (
@@ -64,8 +65,15 @@ class Project(models.Model):
     slug = models.SlugField(default='', max_length=500, null=True, blank=True)
     status = models.CharField(choices=STATUS, max_length=100, null=True)
 
+
+
     class Meta:
         db_table = 'home_project'
+
+    @classmethod
+    def get_all_project(self):
+        return Project.objects.filter(status = 'PUBLISH').order_by('-id')
+        
 
     def __str__(self):
         return self.title
@@ -77,9 +85,7 @@ class Project(models.Model):
 
 
     
-    @classmethod
-    def get_all_project(self):
-        return Project.objects.filter(status = 'PUBLISH').order_by('-id')
+
     
 # for automatic slug creating
 
@@ -102,4 +108,13 @@ def pre_save_post_receiver(sender, instance,  *args, **kwargs):
 pre_save.connect(pre_save_post_receiver, Project)
 
 
-    
+class Requirements(models.Model):
+    project = models.ForeignKey(Project,related_name='requirements', on_delete=models.CASCADE, default=1)
+    points = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.points
+
+class Installnation(models.Model):
+    project = models.ForeignKey(Project, related_name='installnation',on_delete=models.CASCADE, default=1)
+    Text = models.TextField(max_length=1000)

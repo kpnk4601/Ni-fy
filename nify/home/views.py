@@ -37,8 +37,7 @@ def contact(request):
 
 
 
-def view_detail(request):
-    return render(request, 'view_detail.html')
+
 
 
 
@@ -57,6 +56,7 @@ def project_detail(request):
     context = {
         'projects': projects,
         'categories': categories,
+        'search_query': search_query,
     }
     return render(request, 'project_detail.html', context)
 
@@ -66,7 +66,9 @@ def project_detail(request):
 
 
 def view_detail(request, slug):
+    categories = Categories.objects.all()
     projects = Project.objects.filter(slug = slug)
+    
     if projects.exists():
         projects = projects.first()
     else:
@@ -74,6 +76,8 @@ def view_detail(request, slug):
     
     context = {
         'project': projects,
+        'categories': categories,
+        
     }
 
     
@@ -87,7 +91,7 @@ def PAGE_NOT_FOUND(request):
 
 
 
-def admin_upload(request):
-    return render(request, 'admin-upload.html')
+def panel(request):
+    return render(request, 'panel.html')
 
 

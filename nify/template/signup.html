@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load socialaccount %}
 {% block body %}
 
     <div class="auth-container">
@@ -10,6 +11,7 @@
                     <h2>Create Account</h2>
                     <p>Join our community today</p>
                 </div>
+                {% include "components/msg.html" %}
                 <form id="signupForm" class="auth-form" method = 'POST'>
                     {% csrf_token %}
                     <div class="form-group">
@@ -48,12 +50,13 @@
 
                     <div class="social-login">
                         <button type="button" class="social-btn github-btn">
-                            <i class="fab fa-github"></i>
+                            <a href="{% provider_login_url 'github' %}"><i class="fab fa-github"></i>
                             Sign up with GitHub
-                        </button>
+                        </a> </button>
                         <button type="button" class="social-btn google-btn">
-                            <img src="assets/google-icon.svg" alt="Google">
-                            Sign up with Google
+                            <a href="{% provider_login_url 'google' %}"><i class="fab fa-google"></i>
+                                Sign up with Google
+                            </a>
                         </button>
                     </div>
 

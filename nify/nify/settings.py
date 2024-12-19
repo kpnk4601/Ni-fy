@@ -88,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'Nikhil@10',
+        'PASSWORD': '#',
         'HOST': 'localhost',  
         'PORT': '5432',         
     }
@@ -164,6 +164,7 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
+
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
@@ -180,3 +181,9 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+
+
+LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_AUTHENTICATED_REDIRECT_URL = '/'

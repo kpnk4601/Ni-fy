@@ -26,7 +26,7 @@
             <!-- Project Info -->
             <div class="project-info-section">
                 <div class="project-header">
-                    <h1>AI Image Recognition System</h1>
+                    <h1>{{project.title}}</h1>
                     <button class="download-btn">
                         <i class="fas fa-download"></i>
                         Download Project
@@ -35,9 +35,10 @@
 
                 <!-- Tags -->
                 <div class="project-tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">TensorFlow</span>
-                    <span class="tag">Machine Learning</span>
+                    
+                    <span class="tag">{{project.categorie.name}}</span>
+                    
+      
                 </div>
 
                 <!-- Tabs -->
@@ -56,7 +57,7 @@
 
                     <div class="tab-content" id="projectTabContent">
                         <div class="tab-pane fade show active" id="description">
-                            <p>A sophisticated image recognition system built using deep learning...</p>
+                            <p>{{project.description}}</p>
                             <h4>Key Features:</h4>
                             <ul>
                                 <li>Real-time image classification</li>
@@ -66,17 +67,19 @@
                         </div>
                         <div class="tab-pane fade" id="requirements">
                             <ul class="requirements-list">
-                                <li>Python 3.8+</li>
-                                <li>TensorFlow 2.4+</li>
-                                <li>OpenCV</li>
-                                <li>NumPy</li>
+                                {% for requirements in project.Requirements.all  %}
+                                
+                                
+                                <li>{{ requirements.points }}</li>
+                
+                                {% endfor %}
                             </ul>
                         </div>
                         <div class="tab-pane fade" id="installation">
                             <div class="code-block">
-                                <pre><code>git clone https://github.com/username/project
-pip install -r requirements.txt
-python setup.py install</code></pre>
+                                {% for installnation in project.Installnation.all %}
+                                <pre><code>{{ installation.Text }}</code></pre>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -88,7 +91,7 @@ python setup.py install</code></pre>
         <div class="author-sidebar">
             <div class="author-card">
                 <img src="https://picsum.photos/100/100" alt="Author" class="author-image">
-                <h3>John Doe</h3>
+                <h3>{{project.author.name}}</h3>
                 <div class="rating">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>

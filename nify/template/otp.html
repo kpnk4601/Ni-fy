@@ -4,23 +4,24 @@
     <div class="verification-container">
         <div class="verification-box">
             <div class="verification-header">
-                <img src="assets/email-verify.svg" alt="Email Verification" class="verify-icon">
+                <img src="#" alt="Email Verification" class="verify-icon">
                 <h2>Email Verification</h2>
                 <p>We've sent a verification code to</p>
                 <div class="email-display">
-                    <span>john.doe@gmail.com</span>
-                    <button class="change-email-btn">Change</button>
+                    <span>{{ email }}</span>
+                    <button type="button" class="change-email-btn">Change</button>
                 </div>
             </div>
 
-            <form class="otp-form">
+            <form method="post" class="otp-form">
+                {% csrf_token %}
                 <div class="otp-inputs">
-                    <input type="text" maxlength="1" class="otp-input" autofocus>
-                    <input type="text" maxlength="1" class="otp-input">
-                    <input type="text" maxlength="1" class="otp-input">
-                    <input type="text" maxlength="1" class="otp-input">
-                    <input type="text" maxlength="1" class="otp-input">
-                    <input type="text" maxlength="1" class="otp-input">
+                    <input type="text" maxlength="1" class="otp-input" name="otp_1" autofocus>
+                    <input type="text" maxlength="1" class="otp-input" name="otp_2">
+                    <input type="text" maxlength="1" class="otp-input" name="otp_3">
+                    <input type="text" maxlength="1" class="otp-input" name="otp_4">
+                    <input type="text" maxlength="1" class="otp-input" name="otp_5">
+                    <input type="text" maxlength="1" class="otp-input" name="otp_6">
                 </div>
 
                 <div class="timer-section">
@@ -35,11 +36,13 @@
 
             <div class="verification-footer">
                 <p>Didn't receive the code?</p>
-                <button class="resend-btn" id="resendBtn" disabled>
-                    <i class="fas fa-redo-alt"></i>
-                    Resend Code
-                    <span class="resend-timer" id="resendTimer"></span>
-                </button>
+                <form method="post" >
+                    {% csrf_token %}
+                    <button class="resend-btn" id="resendBtn" disabled>
+                        <i class="fas fa-redo-alt"></i>
+                        Resend Code
+                    </button>
+                </form>
             </div>
 
             <div class="help-section">
@@ -55,7 +58,6 @@
     <script>
         // OTP Input Handling
         const otpInputs = document.querySelectorAll('.otp-input');
-        
         otpInputs.forEach((input, index) => {
             input.addEventListener('input', (e) => {
                 if (e.target.value.length === 1) {
@@ -85,11 +87,14 @@
 
                 if (--timer < 0) {
                     clearInterval(interval);
-                    document.getElementById('resendBtn').disabled = false;
+                    const resendBtn = document.getElementById('resendBtn');
+                    resendBtn.disabled = false;
                 }
             }, 1000);
         }
 
         // Start countdown
         startTimer(120, document.getElementById('countdown'));
-        {% endblock body %}
+    </script>
+</body>
+{% endblock %}

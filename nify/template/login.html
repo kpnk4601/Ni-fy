@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load socialaccount %}
 {% block body %}
     <div class="auth-container">
         <div class="auth-card" data-aos="zoom-in">
@@ -7,6 +8,7 @@
                 <h2>Welcome Back!</h2>
                 <p>Login to your account to continue</p>
             </div>
+            {% include "components/msg.html" %}
             <form id="loginForm" class="auth-form" method = 'POST'>
                 {% csrf_token %}
                 <div class="form-group">
@@ -37,12 +39,13 @@
                 
                 <div class="social-login">
                     <button type="button" class="social-btn github-btn">
-                        <i class="fab fa-github"></i>
-                        Continue with GitHub
-                    </button>
+                        <a href="{% provider_login_url 'github' %}"><i class="fab fa-github"></i>
+                        Sign up with GitHub
+                    </a> </button>
                     <button type="button" class="social-btn google-btn">
-                        <img src="assets/google-icon.svg" alt="Google">
-                        Continue with Google
+                        <a href="{% provider_login_url 'google' %}"><i class="fab fa-google"></i>
+                            Sign up with Google
+                        </a>
                     </button>
                 </div>
                 

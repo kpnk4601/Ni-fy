@@ -14,11 +14,7 @@
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <!-- or -->
-    <link rel="stylesheet"
-    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
 <body>
     <!-- Modern Clean Navbar -->
@@ -73,57 +69,44 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact">Contact</a>
                     </li>
+                    
+                    {% if user.is_authenticated %}
+                    <!-- When the user is authenticated -->
                     <li class="nav-item">
-                        <a href="upload-project.html" class="nav-btn btn-upload">
+                        <a href="panel" class="nav-btn btn-upload">
                             <i class="fas fa-upload"></i> Upload Project
                         </a>
                     </li>
-
-                    <!-- Guest View (shown when not logged in) -->
+                    <li class="nav-item ms-1">
+                        <!-- Dropdown with username -->
+                        <div class="dropdown">
+                            <a class="btn btn-primary rounded-pill dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                {{ user.get_name|default:user.username|capfirst }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                                <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+                                <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Logout</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    {% else %}
+                    <!-- Guest View when not logged in -->
                     <li class="nav-item ms-lg-3 guest-view">
                         <div class="nav-button-group">
                             <a href="login" class="nav-btn btn-login">Login</a>
                             <a href="signup" class="nav-btn btn-signup">Sign Up</a>
                         </div>
                     </li>
-
-                    <!-- User View (shown when logged in) -->
-                    <li class="nav-item ms-lg-3 user-view" style="display: none;">
-                        <div class="dropdown">
-                            <a class="nav-link dropdown-toggle user-menu" href="#" role="button" data-bs-toggle="dropdown">
-                                <img src="https://picsum.photos/32/32" alt="User" class="user-avatar">
-                                <span class="user-name">John Doe</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated">
-                                <div class="dropdown-header">My Account</div>
-                                <a class="dropdown-item" href="profile.html">
-                                    <i class="fas fa-user"></i> Profile
-                                </a>
-                                <a class="dropdown-item" href="my-projects.html">
-                                    <i class="fas fa-folder"></i> My Projects
-                                </a>
-                                <a class="dropdown-item" href="settings.html">
-                                    <i class="fas fa-cog"></i> Settings
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="#" onclick="handleLogout()">
-                                    <i class="fas fa-sign-out-alt"></i> Logout
-                                </a>
-                            </div>
-                        </div>
-                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
 
-
     {% block body %}
     
     {% endblock %}
-
-
-
 
     <!-- Footer -->
     <footer class="footer">
@@ -161,4 +144,4 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </body>
-</html> 
+</html>
