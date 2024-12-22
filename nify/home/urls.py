@@ -1,5 +1,7 @@
 from django.urls import path
 from home import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 
@@ -11,5 +13,6 @@ urlpatterns = [
     path('project_detail', views.project_detail, name='project_detail'),
     path('panel', views.panel, name='panel'),
     path('view_detail/<slug:slug>/', views.view_detail, name='view_detail'),
+    path('recent', views.recent, name = 'recent')
     
-]
+] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

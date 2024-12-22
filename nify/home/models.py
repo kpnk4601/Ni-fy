@@ -3,16 +3,12 @@ from django.db import models
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 class ContactForm(models.Model):
     name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
-    SUBJECT_CHOICES = [
-        ('1', 'General Inquiry'),
-        ('2', 'Technical Support'),
-        ('3', 'Business Proposal'),
-    ]
-    subject = models.CharField(max_length=1, choices=SUBJECT_CHOICES)
+    email = models.EmailField(max_length=100) 
+    subject = models.CharField(max_length=300)
     message = models.TextField()
     submitted_at = models.DateTimeField(auto_now_add=True)
 
@@ -54,7 +50,7 @@ class Project(models.Model):
         ('PUBLISH', 'PUBLISH'),
         ('DRAFT', 'DRAFT'),
     )
-    
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     feature_image = models.ImageField(upload_to='Media/feature_image', null=True)
     feature_video = models.CharField(max_length=300, null=True)
     title = models.CharField(max_length=500)

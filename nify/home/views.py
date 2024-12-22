@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  get_object_or_404
 from .models import ContactForm
 from django.contrib import messages
 from home.models import Categories, Project
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -90,8 +91,32 @@ def PAGE_NOT_FOUND(request):
 
 
 
-
+@login_required
 def panel(request):
-    return render(request, 'panel.html')
+    if request.method == "POST":
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        feature_image = request.FILES.get('feature_image', None)
+        feature_video = request.POST.get('feature_video')
+        categorie_id = request.POST.get('categorie')
+        categorie = get_object_or_404(Categories, id=categorie_id)
 
+        Project.objects.create(
+            user=request.user,
+            title=title,
+            description=description,
+            feature_image=feature_image,
+            feature_video=feature_video,
+            categorie=categorie,
+        )
+        messages.success(request, "Project uploaded successfully.")
+        return redirect('recent')
 
+    categories = Categories.get_all()
+    return render(request, 'panel.html', {'categories': categories})
+
+   
+@login_required
+def recent(request):
+    projects = Project.objects.filter(user=request.user)
+    return render(request, 'recent.html', {'projects': projects}) 

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block body %}
+{% load static %}
+
+
+    <div class="view-projects-wrapper">
+        <!-- Sidebar -->
+        <div class="projects-sidebar">
+            <div class="user-profile">
+                <img src="https://picsum.photos/100/100" alt="User" class="user-avatar">
+                <h3>John Doe</h3>
+                <p>@johndoe</p>
+            </div>
+            <div class="sidebar-menu">
+                <a href="project-upload.html" class="menu-item">
+                    <i class="fas fa-plus"></i>
+                    Upload New Project
+                </a>
+                <a href="#" class="menu-item active">
+                    <i class="fas fa-folder"></i>
+                    My Projects
+                </a>
+                <a href="#" class="menu-item text-danger">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="projects-main">
+            <div class="projects-header">
+                <h2>My Projects</h2>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search projects...">
+                </div>
+            </div>
+
+            <div class="projects-list">
+                <!-- Project Item -->
+                <div class="project-item">
+                    <div class="project-details">
+                        <h3>Weather App</h3>
+                        <div class="project-meta">
+                            <span class="category"><i class="fas fa-tag"></i> Web Development</span>
+                            <span class="date"><i class="far fa-calendar"></i> March 15, 2024</span>
+                        </div>
+                        <p class="project-description">A weather application built with React that shows real-time weather data.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-link"></i> Live Demo</a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> Repository</a>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <button class="edit-btn" title="Edit Project">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="delete-btn" title="Delete Project">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Additional Project Items -->
+                <div class="project-item">
+                    <div class="project-details">
+                        <h3>Task Manager</h3>
+                        <div class="project-meta">
+                            <span class="category"><i class="fas fa-tag"></i> Full Stack</span>
+                            <span class="date"><i class="far fa-calendar"></i> March 10, 2024</span>
+                        </div>
+                        <p class="project-description">A full-stack task management application with user authentication.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-link"></i> Live Demo</a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> Repository</a>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <button class="edit-btn" title="Edit Project">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="delete-btn" title="Delete Project">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

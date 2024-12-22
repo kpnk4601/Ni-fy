@@ -1,13 +1,25 @@
 {% extends "base.html" %}
 {% block body %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Project - CodeShare Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
 <body>
     <div class="modern-upload-wrapper">
         <!-- Left Sidebar -->
         <div class="upload-sidebar">
             <div class="user-profile">
                 <img src="https://picsum.photos/100/100" alt="User" class="user-avatar">
-                <h3>John Doe</h3>
-                <p>@johndoe</p>
+                <p>{{ request.user.username }}</p>
             </div>
 
             <div class="navigation-menu">
@@ -32,22 +44,27 @@
                 <h2>Upload Your Project</h2>
             </div>
 
-            <form class="simple-upload-form">
+            <form class="simple-upload-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
                 <!-- Project Details -->
                 <div class="form-section">
                     <div class="input-group-modern">
                         <label>Project Title</label>
-                        <input type="text" placeholder="Enter project title" required>
+                        <input type="text" placeholder="Enter project title" name = 'title' required>
                     </div>
 
                     <div class="input-group-modern">
-                        <label>Category</label>
-                        <input type="text" placeholder="e.g., Web Development, Mobile App, AI/ML">
+                        <label>Category:</label>
+                        <select name="categorie">
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
 
                     <div class="input-group-modern">
                         <label>Project Description</label>
-                        <textarea rows="4" placeholder="Describe your project..." required></textarea>
+                        <textarea rows="4" placeholder="Describe your project..." name = ' description' required></textarea>
                     </div>
 
                     <div class="input-group-modern">
@@ -61,7 +78,7 @@
                     <div class="input-group-modern">
                         <label>Project Images</label>
                         <div class="simple-upload-box">
-                            <input type="file" multiple accept="image/*" required>
+                            <input type="file" multiple accept="image/*" name="feature_image" required>
                             <i class="fas fa-images"></i>
                             <p>Choose images to upload (Max 5)</p>
                         </div>
@@ -70,7 +87,7 @@
                     <div class="input-group-modern">
                         <label>Project Files</label>
                         <div class="simple-upload-box">
-                            <input type="file" required>
+                            <input type="file" >
                             <i class="fas fa-file-archive"></i>
                             <p>Upload project files (ZIP)</p>
                         </div>
@@ -86,7 +103,7 @@
                 <div class="form-section">
                     <div class="input-group-modern">
                         <label>Author Email</label>
-                        <input type="email" placeholder="Your email address" required>
+                        <input type="email" placeholder="Your email address" >
                     </div>
 
                     <div class="input-group-modern">
@@ -104,4 +121,6 @@
             </form>
         </div>
     </div>
-    {% endblock body %}
+    
+    
+{% endblock %}
