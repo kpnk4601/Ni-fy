@@ -28,9 +28,9 @@ class Categories(models.Model):
     def __str__(self):
         return self.name
     
-    @classmethod
-    def get_all(cls):
-        return cls.objects.all().order_by('-id')
+    @staticmethod
+    def get_all():
+        return Categories.objects.all()
     
 
 class Author(models.Model):
@@ -60,6 +60,9 @@ class Project(models.Model):
     description = models.TextField()
     slug = models.SlugField(default='', max_length=500, null=True, blank=True)
     status = models.CharField(choices=STATUS, max_length=100, null=True)
+
+
+
 
 
 

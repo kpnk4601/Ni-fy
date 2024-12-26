@@ -13,6 +13,7 @@ urlpatterns = [
     path('project_detail', views.project_detail, name='project_detail'),
     path('panel', views.panel, name='panel'),
     path('view_detail/<slug:slug>/', views.view_detail, name='view_detail'),
-    path('recent', views.recent, name = 'recent')
+    path('recent', views.recent, name = 'recent'),
+    path('project/delete/<int:id>/', views.delete_project, name='delete_project'),
     
 ] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

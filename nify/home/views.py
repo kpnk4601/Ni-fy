@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect,  get_object_or_404
 from .models import ContactForm
 from django.contrib import messages
-from home.models import Categories, Project
+from home.models import Categories, Project, Requirements
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -66,23 +66,25 @@ def project_detail(request):
 
 
 
+from django.shortcuts import get_object_or_404, redirect, render
+
 def view_detail(request, slug):
     categories = Categories.objects.all()
-    projects = Project.objects.filter(slug = slug)
+    project = Project.objects.filter(slug=slug).first()  # Get the first project matching the slug
     
-    if projects.exists():
-        projects = projects.first()
-    else:
-        return redirect('404')
+    if not project:
+        return redirect('404')  # Redirect to a 404 page if the project is not found
+    
+    requirements = project.requirements.all()  # Fetch all related requirements for the project
     
     context = {
-        'project': projects,
+        'project': project,
         'categories': categories,
-        
+        'requirements': requirements,
     }
-
     
     return render(request, 'view_detail.html', context)
+
 
 
 def PAGE_NOT_FOUND(request):
@@ -120,3 +122,14 @@ def panel(request):
 def recent(request):
     projects = Project.objects.filter(user=request.user)
     return render(request, 'recent.html', {'projects': projects}) 
+
+
+
+@login_required
+def delete_project(request, id):
+    project = get_object_or_404(Project, id=id, user=request.user)
+    project.delete()
+    return redirect('panel') 
+
+
+
